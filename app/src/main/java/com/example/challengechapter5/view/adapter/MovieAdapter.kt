@@ -1,4 +1,4 @@
-package com.example.challengechapter5.adapter
+package com.example.challengechapter5.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

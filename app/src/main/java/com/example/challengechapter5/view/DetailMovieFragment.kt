@@ -1,4 +1,4 @@
-package com.example.challengechapter5.ui
+package com.example.challengechapter5.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.challengechapter5.R
 
 
-class EditProfileFragment : Fragment() {
+class DetailMovieFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -16,7 +16,8 @@ class EditProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_profile, container, false)
+        return inflater.inflate(R.layout.fragment_detail_movie, container, false)
     }
+
 
 }

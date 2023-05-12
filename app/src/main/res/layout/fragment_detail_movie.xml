@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".ui.DetailMovieFragment"
+    tools:context=".view.DetailMovieFragment"
     android:padding="20dp">
 
     <ScrollView
@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:scaleType="centerCrop"
-                android:src="" />
+                />
 
             <!-- Movie Title -->
             <TextView
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 tools:text="Release Date: January 1, 2023"
                 android:textSize="16sp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="#FFAAAAAA"
                 android:paddingBottom="8dp" />
 
             <!-- Movie Genre -->
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 tools:text="genre"
                 android:textSize="16sp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="#FFAAAAAA"
                 android:paddingBottom="8dp" />
 
             <!-- Movie Duration -->
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 tools:text="Duration"
                 android:textSize="16sp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="#FFAAAAAA"
                 android:paddingBottom="8dp" />
 
             <!-- Movie Overview -->
@@ -74,7 +74,7 @@
                 android:id="@+id/tv_movie_overview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/background_light"
+                android:textColor="@color/white"
                 tools:text="A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \fight clubs\ forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion"
                 android:paddingBottom="8dp" />
 

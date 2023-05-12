@@ -29,4 +29,7 @@
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="play">Play</string>
     <string name="add_to_watchlist">Add to Watchlist</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="or">Or</string>
+    <string name="client_id">596775787608-uk5g2in0cm63ugdcrgpm4lmhgnlmhih1.apps.googleusercontent.com</string>
 </resources>

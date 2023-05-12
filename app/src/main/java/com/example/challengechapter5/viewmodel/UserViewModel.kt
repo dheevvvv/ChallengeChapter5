@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.challengechapter5.database_room.MovieDatabase
 import com.example.challengechapter5.database_room.UserData
 import com.example.challengechapter5.datastore_preferences.UserManager
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch

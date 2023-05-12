@@ -1,4 +1,4 @@
-package com.example.challengechapter5.ui
+package com.example.challengechapter5.view
 
 import android.os.Bundle
 import android.os.Handler

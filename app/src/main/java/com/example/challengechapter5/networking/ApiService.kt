@@ -12,10 +12,10 @@ interface ApiService {
     fun getPopularMovies(): Call<PopularMoviesResponse>
 
     @GET("movie/top_rated")
-    fun getTopRatedMovies(): Call<TopRatedMoviesResponse>
+    fun getTopRatedMovies(): Call<PopularMoviesResponse>
 
     @GET("movie/upcoming")
-    fun getUpcomingMovies():Call<UpcomingMoviesResponse>
+    fun getUpcomingMovies():Call<PopularMoviesResponse>
 
     @GET("movie/{movie_id}")
     fun getMovieDetail(
@@ -26,7 +26,7 @@ interface ApiService {
     fun getTvPopular():Call<PopularTvSeriesResponse>
 
     @GET("tv/on_the_air")
-    fun getTvOnTheAir():Call<TvOnTheAirResponse>
+    fun getTvOnTheAir():Call<PopularTvSeriesResponse>
 
     @GET("tv/{series_id}")
     fun getTvSeriesDetail(

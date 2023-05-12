@@ -6,7 +6,7 @@
     android:background="@color/black"
     android:padding="20dp"
     android:layout_height="match_parent"
-    tools:context=".ui.HomeFragment">
+    tools:context=".view.HomeFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -20,8 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-
-            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
             tools:ignore="TextContrastCheck"
             tools:layout_editor_absoluteX="152dp"
             tools:layout_editor_absoluteY="11dp" />
