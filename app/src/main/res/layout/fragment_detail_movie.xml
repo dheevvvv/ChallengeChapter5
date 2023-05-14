@@ -49,12 +49,12 @@
                 android:textColor="#FFAAAAAA"
                 android:paddingBottom="8dp" />
 
-            <!-- Movie Genre -->
+            <!-- Movie Tagline-->
             <TextView
-                android:id="@+id/tv_movie_genre"
+                android:id="@+id/tv_movie_tagline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="genre"
+                tools:text="tagline"
                 android:textSize="16sp"
                 android:textColor="#FFAAAAAA"
                 android:paddingBottom="8dp" />

@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challengechapter5.R
 import com.example.challengechapter5.databinding.FragmentHomeBinding
+import com.example.challengechapter5.model.ResultPopular
 import com.example.challengechapter5.view.adapter.MovieAdapter
 import com.example.challengechapter5.viewmodel.MovieViewModel
 import com.example.challengechapter5.viewmodel.UserViewModel
@@ -59,8 +60,15 @@ class HomeFragment : Fragment() {
         movieViewModel.callGetPopularMovies()
         movieViewModel.popularMovies.observe(viewLifecycleOwner, Observer {
             if (it != null){
+                val adapter = MovieAdapter(it)
                 binding.rvPopularMovies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                binding.rvPopularMovies.adapter = MovieAdapter(it)
+                binding.rvPopularMovies.adapter = adapter
+                adapter.onClick= {
+                    val id = it.id
+                    val bundle = Bundle()
+                    bundle.putInt("id", id)
+                    findNavController().navigate(R.id.action_homeFragment_to_detailMovieFragment, bundle)
+                }
             }
             else{
                 Toast.makeText(context, "null", Toast.LENGTH_SHORT).show()
@@ -72,8 +80,15 @@ class HomeFragment : Fragment() {
         movieViewModel.callGetTopRatedMovies()
         movieViewModel.movieTopRated.observe(viewLifecycleOwner, Observer {
             if (it != null){
+                val adapter = MovieAdapter(it)
                 binding.rvTopRatedMovies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                binding.rvTopRatedMovies.adapter = MovieAdapter(it)
+                binding.rvTopRatedMovies.adapter = adapter
+                adapter.onClick= {
+                    val id = it.id
+                    val bundle = Bundle()
+                    bundle.putInt("id", id)
+                    findNavController().navigate(R.id.action_homeFragment_to_detailMovieFragment, bundle)
+                }
             }
         })
     }
@@ -82,8 +97,15 @@ class HomeFragment : Fragment() {
         movieViewModel.callGetUpcomingMovies()
         movieViewModel.upcomingMovies.observe(viewLifecycleOwner, Observer {
             if (it != null){
+                val adapter = MovieAdapter(it)
                 binding.rvUpcomingMovies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                binding.rvUpcomingMovies.adapter = MovieAdapter(it)
+                binding.rvUpcomingMovies.adapter = adapter
+                adapter.onClick= {
+                    val id = it.id
+                    val bundle = Bundle()
+                    bundle.putInt("id", id)
+                    findNavController().navigate(R.id.action_homeFragment_to_detailMovieFragment, bundle)
+                }
             }
         })
     }
@@ -92,8 +114,15 @@ class HomeFragment : Fragment() {
         movieViewModel.callGetTvSeriesPopular()
         movieViewModel.popularTvSeries.observe(viewLifecycleOwner, Observer {
             if (it!=null){
+                val adapter = MovieAdapter(it)
                 binding.rvPopularTvSeries.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                binding.rvPopularTvSeries.adapter = MovieAdapter(it)
+                binding.rvPopularTvSeries.adapter = adapter
+                adapter.onClick= {
+                    val id = it.id
+                    val bundle = Bundle()
+                    bundle.putInt("id", id)
+                    findNavController().navigate(R.id.action_homeFragment_to_detailMovieFragment, bundle)
+                }
             }
         })
     }
@@ -102,10 +131,18 @@ class HomeFragment : Fragment() {
         movieViewModel.callGetTvSeriesTopRated()
         movieViewModel.topRatedTvSeries.observe(viewLifecycleOwner, Observer {
             if (it!=null){
+                val adapter = MovieAdapter(it)
                 binding.rvTopratedTvSeries.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                binding.rvTopratedTvSeries.adapter = MovieAdapter(it)
+                binding.rvTopratedTvSeries.adapter = adapter
+                adapter.onClick= {
+                    val id = it.id
+                    val bundle = Bundle()
+                    bundle.putInt("id", id)
+                    findNavController().navigate(R.id.action_homeFragment_to_detailMovieFragment, bundle)
+                }
             }
         })
     }
+
 
 }

@@ -27,7 +27,7 @@ class MovieAdapter(var listMovie:List<ResultPopular>): RecyclerView.Adapter<Movi
         holder.binding.titleMovie.text = list.title
         Glide.with(holder.itemView).load("https://image.tmdb.org/t/p/w400${list.posterPath}")
             .into(holder.binding.ivMovie)
-        holder.binding.areaDetail.setOnClickListener{
+        holder.binding.onClickDetail.setOnClickListener{
             onClick?.invoke(list)
         }
         holder.binding.rateMovie.text = list.voteAverage.toString()
