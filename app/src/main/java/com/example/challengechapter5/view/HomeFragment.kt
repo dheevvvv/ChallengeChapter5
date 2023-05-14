@@ -47,6 +47,8 @@ class HomeFragment : Fragment() {
         showDataPopularMovie()
         showdataTopRatedMovies()
         showDataUpcomingMovies()
+        showDataPopularTvSeries()
+        showDataTopRatedTvSeries()
 
         binding.ivProfile.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
@@ -82,6 +84,26 @@ class HomeFragment : Fragment() {
             if (it != null){
                 binding.rvUpcomingMovies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 binding.rvUpcomingMovies.adapter = MovieAdapter(it)
+            }
+        })
+    }
+
+    fun showDataPopularTvSeries(){
+        movieViewModel.callGetTvSeriesPopular()
+        movieViewModel.popularTvSeries.observe(viewLifecycleOwner, Observer {
+            if (it!=null){
+                binding.rvPopularTvSeries.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                binding.rvPopularTvSeries.adapter = MovieAdapter(it)
+            }
+        })
+    }
+
+    fun showDataTopRatedTvSeries(){
+        movieViewModel.callGetTvSeriesTopRated()
+        movieViewModel.topRatedTvSeries.observe(viewLifecycleOwner, Observer {
+            if (it!=null){
+                binding.rvTopratedTvSeries.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                binding.rvTopratedTvSeries.adapter = MovieAdapter(it)
             }
         })
     }

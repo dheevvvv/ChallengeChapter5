@@ -24,11 +24,11 @@ class MovieViewModel():ViewModel() {
     private val _upcomingMovies = MutableLiveData<List<ResultPopular>>()
     val upcomingMovies : LiveData<List<ResultPopular>> = _upcomingMovies
 
-    private val _popularTvSeries = MutableLiveData<List<ResultPopularTvSeries>>()
-    val popularTvSeries : LiveData<List<ResultPopularTvSeries>> = _popularTvSeries
+    private val _popularTvSeries = MutableLiveData<List<ResultPopular>>()
+    val popularTvSeries : LiveData<List<ResultPopular>> = _popularTvSeries
 
-    private val _onAirTvSeries = MutableLiveData<List<ResultPopularTvSeries>>()
-    val trendingTv : LiveData<List<ResultPopularTvSeries>> = _onAirTvSeries
+    private val _topRatedTvSeries = MutableLiveData<List<ResultPopular>>()
+    val topRatedTvSeries : LiveData<List<ResultPopular>> = _topRatedTvSeries
 
     private val _tvSeriesDetail = MutableLiveData<TvSeriesDetailResponse>()
     val tvSeriesDetail : LiveData<TvSeriesDetailResponse> = _tvSeriesDetail
@@ -127,10 +127,10 @@ class MovieViewModel():ViewModel() {
     }
 
     fun callGetTvSeriesPopular(){
-        RetrofitClient.RetrofitClient.instance.getTvPopular().enqueue(object : retrofit2.Callback<PopularTvSeriesResponse>{
+        RetrofitClient.RetrofitClient.instance.getTvPopular().enqueue(object : retrofit2.Callback<PopularMoviesResponse>{
             override fun onResponse(
-                call: Call<PopularTvSeriesResponse>,
-                response: Response<PopularTvSeriesResponse>
+                call: Call<PopularMoviesResponse>,
+                response: Response<PopularMoviesResponse>
             ) {
                 if (response.isSuccessful){
                     val data = response.body()
@@ -142,30 +142,30 @@ class MovieViewModel():ViewModel() {
                 }
             }
 
-            override fun onFailure(call: Call<PopularTvSeriesResponse>, t: Throwable) {
+            override fun onFailure(call: Call<PopularMoviesResponse>, t: Throwable) {
                 Log.e("Error : ", "onFailure : ${t.message}")
             }
 
         })
     }
 
-    fun callGetTvSeriesOnAir(){
-        RetrofitClient.RetrofitClient.instance.getTvOnTheAir().enqueue(object : retrofit2.Callback<PopularTvSeriesResponse>{
+    fun callGetTvSeriesTopRated(){
+        RetrofitClient.RetrofitClient.instance.getTvOnTheAir().enqueue(object : retrofit2.Callback<PopularMoviesResponse>{
             override fun onResponse(
-                call: Call<PopularTvSeriesResponse>,
-                response: Response<PopularTvSeriesResponse>
+                call: Call<PopularMoviesResponse>,
+                response: Response<PopularMoviesResponse>
             ) {
                 if (response.isSuccessful){
                     val data = response.body()
                     if (data!= null){
-                        _onAirTvSeries.postValue(data.results)
+                        _topRatedTvSeries.postValue(data.results)
                     }else{
                         Log.e("Error : ", "onFailure : ${response.message()}")
                     }
                 }
             }
 
-            override fun onFailure(call: Call<PopularTvSeriesResponse>, t: Throwable) {
+            override fun onFailure(call: Call<PopularMoviesResponse>, t: Throwable) {
                 Log.e("Error : ", "onFailure : ${t.message}")
             }
 

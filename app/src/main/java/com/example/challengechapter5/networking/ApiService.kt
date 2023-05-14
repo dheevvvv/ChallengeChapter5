@@ -23,10 +23,10 @@ interface ApiService {
     ):Call<MoviesDetailResponse>
 
     @GET("tv/popular")
-    fun getTvPopular():Call<PopularTvSeriesResponse>
+    fun getTvPopular():Call<PopularMoviesResponse>
 
-    @GET("tv/on_the_air")
-    fun getTvOnTheAir():Call<PopularTvSeriesResponse>
+    @GET("tv/top_rated")
+    fun getTvOnTheAir():Call<PopularMoviesResponse>
 
     @GET("tv/{series_id}")
     fun getTvSeriesDetail(
