@@ -46,6 +46,18 @@ class UserManager(private val context: Context) {
         }
     }
 
+    suspend fun updateUsername(username: String) {
+        context.datastore.edit { preferences ->
+            preferences[USERNAME] = username
+        }
+    }
+
+    suspend fun updatePhotoProfile(photoProfile: String) {
+        context.datastore.edit { preferences ->
+            preferences[PROFILE_PHOTO] = photoProfile
+        }
+    }
+
 
     suspend fun clearData(){
         context.datastore.edit {

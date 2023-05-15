@@ -48,22 +48,26 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         userManager = UserManager.getInstance(requireContext())
 
-//        userViewModel.getUsername()
-//        userViewModel.username.observe(viewLifecycleOwner){
-//            binding.tvUsernameProfile.text = it.toString()
-//        }
-//        userViewModel.getProfilePhoto()
-//        userViewModel.profilePhoto.observe(viewLifecycleOwner){
-//            Glide.with(this).load(it)
-//                .circleCrop()
-//                .into(binding.ivProfileImg)
-//        }
-        userViewModel.getUser().observe(viewLifecycleOwner, Observer {
-            binding.tvUsernameProfile.text = it.username
-            Glide.with(this).load(it.profilePhoto)
+
+        userViewModel.getUsername()
+        userViewModel.username.observe(viewLifecycleOwner, Observer {
+            binding.tvUsernameProfile.text = it.toString()
+        })
+
+
+        userViewModel.getProfilePhoto()
+        userViewModel.profilePhoto.observe(viewLifecycleOwner, Observer {
+            Glide.with(this).load(it.toString())
                 .circleCrop()
                 .into(binding.ivProfileImg)
         })
+
+//        userViewModel.getUser().observe(viewLifecycleOwner, Observer {
+//            binding.tvUsernameProfile.text = it.username
+//            Glide.with(this).load(it.profilePhoto)
+//                .circleCrop()
+//                .into(binding.ivProfileImg)
+//        })
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))

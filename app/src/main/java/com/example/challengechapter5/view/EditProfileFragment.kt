@@ -34,6 +34,7 @@ class EditProfileFragment : Fragment() {
         binding.btnSaveEdit.setOnClickListener {
             saveEdit()
             findNavController().navigate(R.id.action_editProfileFragment_to_profileFragment)
+
         }
 
     }
@@ -65,10 +66,13 @@ class EditProfileFragment : Fragment() {
                 profilePhoto = if (imgProfile.isNotEmpty()) imgProfile else dataUser.profilePhoto
             )
             userViewModel.updateUser(updatedUser)
+            userViewModel.updateUsername(username)
+            userViewModel.updatePhotoProfile(imgProfile)
             Toast.makeText(requireContext(), "Edit profile berhasil disimpan", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(requireContext(), "Tidak ada perubahan yang disimpan", Toast.LENGTH_SHORT).show()
         }
+
     }
 
 

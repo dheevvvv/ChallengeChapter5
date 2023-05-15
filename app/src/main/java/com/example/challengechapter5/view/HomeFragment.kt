@@ -41,8 +41,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        userViewModel.getUser().observe(viewLifecycleOwner){
-            binding.tvHome.text = "Hello, Welcome!, ${it.username}"
+        userViewModel.getUsername()
+        userViewModel.username.observe(viewLifecycleOwner){
+            binding.tvHome.text = "Hello, Welcome!, ${it}"
         }
 
         showDataPopularMovie()

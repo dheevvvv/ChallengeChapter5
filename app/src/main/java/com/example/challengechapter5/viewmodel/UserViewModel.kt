@@ -18,22 +18,37 @@ class UserViewModel(application: Application):AndroidViewModel(application) {
     val username: LiveData<String> = _username
 
     private val _profilePhoto = MutableLiveData<String>()
-    val profilePhoto: LiveData<String> = _username
+    val profilePhoto: LiveData<String> = _profilePhoto
 
     private val userDAO = MovieDatabase.getInstance(getApplication())?.userDao()!!
 
     val userManager = UserManager.getInstance(application)
+
+
     fun getUsername() {
         viewModelScope.launch {
             val username = userManager.getUsername()
-            _username.value = username
+            _username.postValue(username)
         }
     }
 
     fun getProfilePhoto() {
         viewModelScope.launch {
             val profilePhoto = userManager.getProfilePhoto()
-            _profilePhoto.value = profilePhoto
+            _profilePhoto.postValue(profilePhoto)
+        }
+    }
+
+    fun updateUsername(username:String){
+        viewModelScope.launch {
+            val usernameUpdate = userManager.updateUsername(username)
+            _username.postValue(usernameUpdate.toString())
+        }
+    }
+    fun updatePhotoProfile(photoProfile:String){
+        viewModelScope.launch {
+            val photoUpdate = userManager.updatePhotoProfile(photoProfile)
+            _profilePhoto.postValue(photoUpdate.toString())
         }
     }
 
@@ -56,6 +71,7 @@ class UserViewModel(application: Application):AndroidViewModel(application) {
     fun getUser(): LiveData<UserData> {
         return userDAO.getUser()
     }
+
 
 //    fun getUserId(): LiveData<Int> {
 //        val userIdLiveData = userDAO.getUserIdByUsername(username)
