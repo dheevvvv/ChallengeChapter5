@@ -40,9 +40,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userViewModel.getUsername()
-        userViewModel.username.observe(viewLifecycleOwner){
-            binding.tvHome.text = "Hello, Welcome!, $it"
+
+        userViewModel.getUser().observe(viewLifecycleOwner){
+            binding.tvHome.text = "Hello, Welcome!, ${it.username}"
         }
 
         showDataPopularMovie()

@@ -7,6 +7,17 @@
     android:background="@color/black"
     tools:context=".view.EditProfileFragment">
 
+    <ImageView
+        android:id="@+id/btnHome"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_home"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        />
+
     <TextView
         android:id="@+id/tv_Profile"
         android:layout_width="wrap_content"
@@ -53,7 +64,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:hint="@string/image_profile"
                 app:boxBackgroundColor="@color/dark"
-                android:textColorHint="@color/white"
+                android:textColorHint="#6FFFFFFF"
                 android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -62,6 +73,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etImage_profile"
                     android:layout_width="match_parent"
+                    android:textColor="@color/white"
                     android:layout_height="wrap_content"
                     tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -73,15 +85,16 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:hint="@string/username"
                 app:boxBackgroundColor="@color/dark"
-                android:textColorHint="@color/white"
+                android:textColorHint="#6FFFFFFF"
                 android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_login">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etUsername_regist"
+                    android:id="@+id/etUsername_Profile"
                     android:layout_width="match_parent"
+                    android:textColor="@color/white"
                     android:layout_height="wrap_content"
                     tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>

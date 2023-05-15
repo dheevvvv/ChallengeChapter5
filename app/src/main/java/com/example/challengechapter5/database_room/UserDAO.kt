@@ -11,10 +11,10 @@ import androidx.room.Update
 interface UserDAO {
     @Insert
     fun insertUser(userData: UserData)
-
+    @Query("SELECT * FROM table_user")
+    fun getUser(): LiveData<UserData>
     @Query("SELECT * FROM table_user WHERE email = :email AND password = :password")
     fun checkUser(email : String, password : String): LiveData<UserData>
-
     @Update
     fun updateUser(userData: UserData)
 }

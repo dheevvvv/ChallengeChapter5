@@ -4,8 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.LiveData
+import com.example.challengechapter5.database_room.MovieDatabase
+import com.example.challengechapter5.database_room.UserData
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -19,6 +23,7 @@ class UserManager(private val context: Context) {
     private val EMAIL = stringPreferencesKey("email")
     private val PASSWORD = stringPreferencesKey("password")
     private val IS_LOGIN_KEY = booleanPreferencesKey("is_login")
+    private val PROFILE_PHOTO = stringPreferencesKey("profile_photo")
 
     companion object {
         @SuppressLint("StaticFieldLeak")
@@ -31,14 +36,14 @@ class UserManager(private val context: Context) {
         }
     }
 
-    suspend fun saveData(username:String, email:String, password:String, is_login_key:Boolean){
+    suspend fun saveData (username:String, email:String, password:String, is_login_key:Boolean, profile_photo:String){
         context.datastore.edit {
             it [USERNAME] = username
             it [EMAIL] = email
             it [PASSWORD] = password
             it [IS_LOGIN_KEY] = is_login_key
+            it [PROFILE_PHOTO] = profile_photo
         }
-
     }
 
 
@@ -59,6 +64,16 @@ class UserManager(private val context: Context) {
         val preferences = context.datastore.data.first()
         return preferences[USERNAME] ?: ""
     }
+
+    suspend fun getProfilePhoto(): String {
+        val preferences = context.datastore.data.first()
+        return preferences[PROFILE_PHOTO] ?: ""
+    }
+
+
+
+
+
 
 
 }

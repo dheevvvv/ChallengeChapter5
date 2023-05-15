@@ -17,6 +17,11 @@ class UserViewModel(application: Application):AndroidViewModel(application) {
     private val _username = MutableLiveData<String>()
     val username: LiveData<String> = _username
 
+    private val _profilePhoto = MutableLiveData<String>()
+    val profilePhoto: LiveData<String> = _username
+
+    private val userDAO = MovieDatabase.getInstance(getApplication())?.userDao()!!
+
     val userManager = UserManager.getInstance(application)
     fun getUsername() {
         viewModelScope.launch {
@@ -25,19 +30,40 @@ class UserViewModel(application: Application):AndroidViewModel(application) {
         }
     }
 
+    fun getProfilePhoto() {
+        viewModelScope.launch {
+            val profilePhoto = userManager.getProfilePhoto()
+            _profilePhoto.value = profilePhoto
+        }
+    }
+
     fun insertUser(userData: UserData){
-        viewModelScope.launch() {
+        GlobalScope.async {
             val userDAO = MovieDatabase.getInstance(getApplication())?.userDao()!!
             userDAO.insertUser(userData)
         }
     }
     fun checkUser(email : String, password : String) : LiveData<UserData> = MovieDatabase.getInstance((getApplication()))!!.userDao().checkUser(email, password)
 
+
     fun updateUser(userData: UserData){
-        viewModelScope.launch {
+        GlobalScope.async {
             val userDAO = MovieDatabase.getInstance(getApplication())?.userDao()
             userDAO?.updateUser(userData)
         }
     }
+
+    fun getUser(): LiveData<UserData> {
+        return userDAO.getUser()
+    }
+
+//    fun getUserId(): LiveData<Int> {
+//        val userIdLiveData = userDAO.getUserIdByUsername(username)
+//        return userIdLiveData
+//    }
+
+
+
+
 
 }

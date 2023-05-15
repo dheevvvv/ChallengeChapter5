@@ -7,10 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.challengechapter5.R
+import com.example.challengechapter5.database_room.UserData
 import com.example.challengechapter5.databinding.FragmentLoginBinding
 import com.example.challengechapter5.datastore_preferences.UserManager
+import com.example.challengechapter5.viewmodel.UserViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -33,6 +36,7 @@ class LoginFragment : Fragment() {
     private val REQ_CODE = 2
     private lateinit var auth: FirebaseAuth
     private lateinit var userManager: UserManager
+    private lateinit var userViewModel: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +49,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        userViewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
 
         auth = Firebase.auth
         userManager = UserManager.getInstance(requireContext())
@@ -102,11 +107,16 @@ class LoginFragment : Fragment() {
         auth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 GlobalScope.async {
-                    userManager.saveData(username = account.displayName.toString(), email = account.email.toString(), password = "googlesignin", is_login_key = true )
+                    userManager.saveData(username = account.displayName.toString(), email = account.email.toString(), password = "googleSignin", is_login_key = true, profile_photo = account.photoUrl.toString())
                 }
+                saveUser(username = account.displayName.toString(), email = account.email.toString(), password = "googleSignIn", profile_photo = account.photoUrl.toString())
                 findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
             }
         }
+    }
+
+    fun saveUser(username : String,email : String,password : String, profile_photo:String){
+        userViewModel.insertUser(UserData(0,username,email,password, profile_photo))
     }
 
 
