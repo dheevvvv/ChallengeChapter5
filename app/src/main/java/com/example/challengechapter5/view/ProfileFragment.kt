@@ -94,23 +94,15 @@ class ProfileFragment : Fragment() {
         }
 
         binding.btnLogout.setOnClickListener {
-            mGoogleSignInClient.signOut().addOnCompleteListener {
-                GlobalScope.async {
-                    userManager.clearData()
-                }
-                findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
-                Toast.makeText(context, "Logging Out", Toast.LENGTH_SHORT).show()
+            mGoogleSignInClient.signOut()
+            GlobalScope.async {
+                userManager.clearData()
             }
+            findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
+            Toast.makeText(context, "Logging Out", Toast.LENGTH_SHORT).show()
         }
     }
 
-    fun sendUserData(userData: UserData){
-        val bundle = Bundle().apply {
-            putSerializable("userData", userData)
-        }
-        findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment, bundle)
-
-    }
 
 
 }

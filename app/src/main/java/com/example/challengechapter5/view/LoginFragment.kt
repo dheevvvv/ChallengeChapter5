@@ -28,6 +28,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 
 class LoginFragment : Fragment() {
@@ -67,6 +68,13 @@ class LoginFragment : Fragment() {
         binding.btnGoogleSignIn.setOnClickListener {
             Toast.makeText(requireContext(), "Logging In", Toast.LENGTH_SHORT).show()
             signInGoogle()
+        }
+
+        binding.btnLogin.setOnClickListener {
+            login()
+        }
+        binding.tvRegisterLogin.setOnClickListener {
+            newRegist()
         }
     }
 
@@ -117,6 +125,30 @@ class LoginFragment : Fragment() {
 
     fun saveUser(username : String,email : String,password : String, profile_photo:String){
         userViewModel.insertUser(UserData(0,username,email,password, profile_photo))
+    }
+
+    private fun checkUser(email: String, password: String) {
+        userViewModel.checkUser(email, password).observe(viewLifecycleOwner) {
+            if (it == null) {
+                Toast.makeText(requireContext(), "Email or password Salah", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                GlobalScope.launch {
+                    userManager.saveData(username = it.username,email, password, is_login_key = true, profile_photo = "https://cdn-icons-png.flaticon.com/512/6522/6522516.png")
+                }
+                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+            }
+        }
+    }
+
+    fun login() {
+        val emailLogin = binding.etEmailLogin.text.toString()
+        val passwordLogin = binding.etPasswordLogin.text.toString()
+        checkUser(emailLogin,passwordLogin)
+    }
+
+    fun newRegist() {
+        findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
     }
 
 

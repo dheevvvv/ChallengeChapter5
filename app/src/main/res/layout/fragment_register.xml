@@ -38,7 +38,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:hint="@string/username"
         app:boxBackgroundColor="@color/dark"
-        android:textColorHint="@color/white"
+        android:textColorHint="#6FFFFFFF"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,6 +46,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etUsername_regist"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
@@ -58,7 +59,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:hint="@string/email"
         app:boxBackgroundColor="@color/dark"
-        android:textColorHint="@color/white"
+        android:textColorHint="#6FFFFFFF"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,6 +67,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmail_regist"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
@@ -78,7 +80,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:hint="@string/password"
         app:boxBackgroundColor="@color/dark"
-        android:textColorHint="@color/white"
+        android:textColorHint="#6FFFFFFF"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,6 +92,7 @@
             android:id="@+id/etPassword_regist"
             android:layout_width="match_parent"
             android:inputType="textPassword"
+            android:textColor="@color/white"
             android:layout_height="wrap_content"
             tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -100,7 +103,7 @@
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:hint="@string/confirm_password"
-        android:textColorHint="@color/white"
+        android:textColorHint="#6FFFFFFF"
         app:boxBackgroundColor="@color/dark"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,6 +115,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etConfirmPassword_regist"
             android:inputType="textPassword"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
