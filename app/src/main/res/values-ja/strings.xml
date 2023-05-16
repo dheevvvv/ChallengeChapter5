@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ChallengeChapter5</string>
+    <string name="title_movie">タイトルムービー</string>
+    <string name="_8">8</string>
+    <string name="popular_movies">人気の映画</string>
+    <string name="upcoming_movies">今後の映画</string>
+    <string name="top_rated_movies">評価の高い映画</string>
+    <string name="popular_tv_series">人気のテレビシリーズ</string>
+    <string name="on_the_air_series">オン・ザ・エアシリーズ</string>
+    <string name="login">ログイン</string>
+    <string name="email">Eメール</string>
+    <string name="password">パスワード</string>
+    <string name="create_new_account">新しいアカウントを作成する</string>
+    <string name="register">登録</string>
+    <string name="confirm_password">パスワードを認証する</string>
+    <string name="username">ユーザー名</string>
+    <string name="profile">プロフィール</string>
+    <string name="logout">ログアウト</string>
+    <string name="usernameprofile">ユーザー名 :</string>
+    <string name="passwordprofile">パスワード : ********</string>
+    <string name="edit_profile">プロファイル編集</string>
+    <string name="save_edit">編集を保存</string>
+    <string name="image_profile">イメージプロファイル</string>
+    <string name="password_lama">パスワードラマ</string>
+    <string name="current_password">現在のパスワード</string>
+    <string name="new_password">新しいパスワード</string>
+    <string name="confirm_new_password">新しいパスワードを確認</string>
+    <string name="play">遊ぶ</string>
+    <string name="add_to_watchlist">気に入ったリストに追加する</string>
+    <string name="sign_in_with_google">Googleでサインイン</string>
+    <string name="or">また</string>
+    <string name="top_rated_tv_series">最高評価のテレビシリーズ</string>
+    <string name="hello_welcome">こんにちはようこそ！、</string>
+</resources>

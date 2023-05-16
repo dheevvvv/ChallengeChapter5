@@ -36,6 +36,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,7 +44,7 @@ class HomeFragment : Fragment() {
 
         userViewModel.getUsername()
         userViewModel.username.observe(viewLifecycleOwner){
-            binding.tvHome.text = "Hello, Welcome!, ${it}"
+            binding.tvHome.text = getString(R.string.hello_welcome) + it
         }
 
         showDataPopularMovie()

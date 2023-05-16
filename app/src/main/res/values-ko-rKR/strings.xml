@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ChallengeChapter5</string>
+    <string name="title_movie">Title Movie</string>
+    <string name="_8">8</string>
+    <string name="popular_movies">인기 영화</string>
+    <string name="upcoming_movies">다가오는 영화</string>
+    <string name="top_rated_movies">최고 평점 영화</string>
+    <string name="popular_tv_series">인기 TV 시리즈</string>
+    <string name="on_the_air_series">온더에어 시리즈</string>
+    <string name="login">로그인</string>
+    <string name="email">이메일</string>
+    <string name="password">비밀번호</string>
+    <string name="create_new_account">새 계정을 만들</string>
+    <string name="register">등록하다</string>
+    <string name="confirm_password">비밀번호 확인</string>
+    <string name="username">사용자 이름</string>
+    <string name="profile">프로필</string>
+    <string name="logout">로그 아웃</string>
+    <string name="usernameprofile">사용자 이름 :</string>
+    <string name="passwordprofile">비밀번호 : ********</string>
+    <string name="edit_profile">프로필 수정</string>
+    <string name="save_edit">편집 저장</string>
+    <string name="image_profile">이미지 프로필</string>
+    <string name="password_lama">비밀번호 라마</string>
+    <string name="current_password">현재 비밀번호</string>
+    <string name="new_password">새 비밀번호</string>
+    <string name="confirm_new_password">새 암호를 확인합니다</string>
+    <string name="play">놀다</string>
+    <string name="add_to_watchlist">목록을보고 추가</string>
+    <string name="sign_in_with_google">Google로 로그인</string>
+    <string name="or">또는</string>
+    <string name="top_rated_tv_series">최고 평점 TV 시리즈</string>
+    <string name="hello_welcome">안녕하세요 반갑습니다!,</string>
+</resources>

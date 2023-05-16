@@ -33,7 +33,6 @@ class EditProfileFragment : Fragment() {
         userViewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
         binding.btnSaveEdit.setOnClickListener {
             saveEdit()
-            findNavController().navigate(R.id.action_editProfileFragment_to_profileFragment)
 
         }
 
@@ -66,11 +65,13 @@ class EditProfileFragment : Fragment() {
                 profilePhoto = if (imgProfile.isNotEmpty()) imgProfile else dataUser.profilePhoto
             )
             userViewModel.updateUser(updatedUser)
-            userViewModel.updateUsername(username)
-            userViewModel.updatePhotoProfile(imgProfile)
+            if (username.isNotEmpty()) userViewModel.updateUsername(username) else dataUser.username
+            if (imgProfile.isNotEmpty()) userViewModel.updatePhotoProfile(imgProfile) else dataUser.profilePhoto
             Toast.makeText(requireContext(), "Edit profile berhasil disimpan", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_editProfileFragment_to_profileFragment)
         } else {
             Toast.makeText(requireContext(), "Tidak ada perubahan yang disimpan", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_editProfileFragment_to_profileFragment)
         }
 
     }
