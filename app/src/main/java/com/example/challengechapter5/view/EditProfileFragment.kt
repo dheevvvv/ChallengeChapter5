@@ -1,18 +1,28 @@
 package com.example.challengechapter5.view
 
+import android.app.Activity.RESULT_OK
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Base64
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.challengechapter5.R
 import com.example.challengechapter5.database_room.UserData
 import com.example.challengechapter5.databinding.FragmentEditProfileBinding
 import com.example.challengechapter5.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
+import java.io.ByteArrayOutputStream
 
 
 class EditProfileFragment : Fragment() {
@@ -33,7 +43,12 @@ class EditProfileFragment : Fragment() {
         userViewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
         binding.btnSaveEdit.setOnClickListener {
             saveEdit()
-
+        }
+        binding.btnCamera.setOnClickListener {
+            intentCamera()
+        }
+        binding.btnGalery.setOnClickListener {
+            intentGallery()
         }
 
     }
@@ -75,6 +90,59 @@ class EditProfileFragment : Fragment() {
         }
 
     }
+
+    private fun intentCamera() {
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        try {
+            startActivityForResult(cameraIntent, 1)
+        } catch (exception: ActivityNotFoundException) {
+            // some error to be shown here
+        }
+    }
+
+    private fun intentGallery() {
+        val galleryIntent = Intent(
+            Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        )
+        startActivityForResult(galleryIntent, 2)
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            val bitmap = data?.extras?.get("data") as Bitmap
+            val encodedImage = bitmapToBase64(bitmap)
+            val previewDecode = base64ToBitmap(encodedImage)
+            Glide.with(this).load(previewDecode)
+                .circleCrop()
+                .into(binding.ivEditPhoto)
+            binding.etImageProfile.setText(encodedImage)
+        } else if (requestCode == 2 && resultCode == RESULT_OK) {
+            val imageUri = data?.data
+            val bitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, imageUri)
+            val encodedImage = bitmapToBase64(bitmap)
+            val previewDecode = base64ToBitmap(encodedImage)
+            Glide.with(this).load(previewDecode)
+                .circleCrop()
+                .into(binding.ivEditPhoto)
+            binding.etImageProfile.setText(encodedImage)
+        } else {
+           //
+        }
+    }
+
+    private fun bitmapToBase64(bitmap: Bitmap): String {
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+        val byteArray = byteArrayOutputStream.toByteArray()
+        return Base64.encodeToString(byteArray, Base64.DEFAULT)
+    }
+    private fun base64ToBitmap(encodedImage: String): Bitmap? {
+        val decodedByteArray = android.util.Base64.decode(encodedImage, android.util.Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.size)
+    }
+
 
 
 }

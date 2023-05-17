@@ -1,6 +1,8 @@
 package com.example.challengechapter5.viewmodel
 
 import android.app.Application
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,6 +21,9 @@ class UserViewModel(application: Application):AndroidViewModel(application) {
 
     private val _profilePhoto = MutableLiveData<String>()
     val profilePhoto: LiveData<String> = _profilePhoto
+
+    private val _profilePhotoBitmap = MutableLiveData<Bitmap>()
+    val profilePhotoBitmap: LiveData<Bitmap> = _profilePhotoBitmap
 
     private val userDAO = MovieDatabase.getInstance(getApplication())?.userDao()!!
 
@@ -71,6 +76,20 @@ class UserViewModel(application: Application):AndroidViewModel(application) {
     fun getUser(): LiveData<UserData> {
         return userDAO.getUser()
     }
+
+    private fun base64ToBitmap(encodedImage: String): Bitmap? {
+        val decodedByteArray = android.util.Base64.decode(encodedImage, android.util.Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.size)
+    }
+
+    fun getBitmapFromProfilePhoto(photoProfile: String): Bitmap? {
+        return base64ToBitmap(photoProfile)
+    }
+
+    fun setProfilePhotoBitmap(bitmap: Bitmap) {
+        _profilePhotoBitmap.postValue(bitmap)
+    }
+
 
 
 //    fun getUserId(): LiveData<Int> {

@@ -32,4 +32,6 @@
     <string name="or">또는</string>
     <string name="top_rated_tv_series">최고 평점 TV 시리즈</string>
     <string name="hello_welcome">안녕하세요 반갑습니다!,</string>
+    <string name="upload_from_gallery">갤러리에서 업로드</string>
+    <string name="upload_from_camera">카메라에서 업로드</string>
 </resources>

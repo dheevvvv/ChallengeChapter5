@@ -1,7 +1,10 @@
 package com.example.challengechapter5.view
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -57,10 +60,53 @@ class ProfileFragment : Fragment() {
 
         userViewModel.getProfilePhoto()
         userViewModel.profilePhoto.observe(viewLifecycleOwner, Observer {
-            Glide.with(this).load(it.toString())
+//            val byteArray = Base64.decode(it, Base64.DEFAULT)
+            val byteArray = base64ToBitmap(it)
+            Glide.with(this).load(byteArray)
                 .circleCrop()
                 .into(binding.ivProfileImg)
         })
+//        userViewModel.profilePhoto.observe(viewLifecycleOwner, Observer { photoProfile ->
+//            val byteArray = Base64.decode(photoProfile, Base64.DEFAULT)
+//            val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+//            userViewModel.setProfilePhotoBitmap(bitmap)
+//
+//        })
+//
+//        userViewModel.profilePhotoBitmap.observe(viewLifecycleOwner, Observer { bitmap ->
+//            if (bitmap != null) {
+//                Glide.with(requireContext())
+//                    .load(bitmap)
+//                    .circleCrop()
+//                    .into(binding.ivProfileImg)
+//            } else {
+//                //
+//            }
+//        })
+
+
+//        userViewModel.profilePhoto.observe(viewLifecycleOwner, Observer { photoProfile ->
+//            val byteArray = Base64.decode(photoProfile, Base64.DEFAULT)
+//            val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+//            if (bitmap != null) {
+//                Glide.with(requireContext())
+//                    .load(bitmap)
+//                    .circleCrop()
+//                    .into(binding.ivProfileImg)
+//            } else {
+//                //
+//
+//            }
+//        })
+
+
+//        userViewModel.profilePhoto.observe(viewLifecycleOwner, Observer {
+//            val byteArray = Base64.decode(it, Base64.DEFAULT)
+//            Glide.with(this).load(byteArray)
+//                .circleCrop()
+//                .into(binding.ivProfileImg)
+//        })
+        //            val bitmap = userViewModel.getBitmapFromProfilePhoto(it)
 
 //        userViewModel.getUser().observe(viewLifecycleOwner, Observer {
 //            binding.tvUsernameProfile.text = it.username
@@ -106,6 +152,13 @@ class ProfileFragment : Fragment() {
             Toast.makeText(context, "Logging Out", Toast.LENGTH_SHORT).show()
         }
     }
+
+    private fun base64ToBitmap(encodedImage: String): Bitmap? {
+        val decodedByteArray = android.util.Base64.decode(encodedImage, android.util.Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.size)
+    }
+
+
 
 
 

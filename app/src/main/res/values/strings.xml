@@ -34,4 +34,6 @@
     <string name="client_id" translatable="false">596775787608-uk5g2in0cm63ugdcrgpm4lmhgnlmhih1.apps.googleusercontent.com</string>
     <string name="top_rated_tv_series">Top Rated Tv Series</string>
     <string name="hello_welcome">Hello Welcome!,</string>
+    <string name="upload_from_gallery">Upload from gallery</string>
+    <string name="upload_from_camera">Upload from Camera</string>
 </resources>

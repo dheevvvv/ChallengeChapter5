@@ -32,4 +32,6 @@
     <string name="or">また</string>
     <string name="top_rated_tv_series">最高評価のテレビシリーズ</string>
     <string name="hello_welcome">こんにちはようこそ！、</string>
+    <string name="upload_from_gallery">ギャラリーからアップロード</string>
+    <string name="upload_from_camera">カメラからアップロードa</string>
 </resources>
