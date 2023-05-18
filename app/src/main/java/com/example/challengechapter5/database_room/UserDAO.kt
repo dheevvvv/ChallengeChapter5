@@ -17,4 +17,7 @@ interface UserDAO {
     fun checkUser(email : String, password : String): LiveData<UserData>
     @Update
     fun updateUser(userData: UserData)
+    @Query("SELECT id FROM table_user WHERE email = :email")
+    fun getUserIdByEmail(email: String):Int
+
 }

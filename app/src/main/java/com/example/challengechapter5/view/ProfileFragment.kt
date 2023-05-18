@@ -61,8 +61,8 @@ class ProfileFragment : Fragment() {
         userViewModel.getProfilePhoto()
         userViewModel.profilePhoto.observe(viewLifecycleOwner, Observer {
 //            val byteArray = Base64.decode(it, Base64.DEFAULT)
-            val byteArray = base64ToBitmap(it)
-            Glide.with(this).load(byteArray)
+//            val byteArray = base64ToBitmap(it)
+            Glide.with(this).load(it)
                 .circleCrop()
                 .into(binding.ivProfileImg)
         })
@@ -141,6 +141,10 @@ class ProfileFragment : Fragment() {
 
         binding.btnHome.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
+        }
+
+        binding.btnFavorite.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_favoriteMoviesFragment)
         }
 
         binding.btnLogout.setOnClickListener {

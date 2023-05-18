@@ -69,6 +69,9 @@ class HomeFragment : Fragment() {
                     val id = it.id
                     val bundle = Bundle()
                     bundle.putInt("id", id)
+                    bundle.putString("title", it.title)
+                    bundle.putString("posterpath", it.posterPath)
+                    bundle.putDouble("voteaverage", it.voteAverage)
                     findNavController().navigate(R.id.action_homeFragment_to_detailMovieFragment, bundle)
                 }
             }
@@ -89,6 +92,9 @@ class HomeFragment : Fragment() {
                     val id = it.id
                     val bundle = Bundle()
                     bundle.putInt("id", id)
+                    bundle.putString("title", it.title)
+                    bundle.putString("posterpath", it.posterPath)
+                    bundle.putString("voteaverage", it.voteAverage.toString())
                     findNavController().navigate(R.id.action_homeFragment_to_detailMovieFragment, bundle)
                 }
             }
@@ -106,6 +112,9 @@ class HomeFragment : Fragment() {
                     val id = it.id
                     val bundle = Bundle()
                     bundle.putInt("id", id)
+                    bundle.putString("title", it.title)
+                    bundle.putString("posterpath", it.posterPath)
+                    bundle.putString("voteaverage", it.voteAverage.toString())
                     findNavController().navigate(R.id.action_homeFragment_to_detailMovieFragment, bundle)
                 }
             }
@@ -123,6 +132,9 @@ class HomeFragment : Fragment() {
                     val id = it.id
                     val bundle = Bundle()
                     bundle.putInt("id", id)
+                    bundle.putString("title", it.title)
+                    bundle.putString("posterpath", it.posterPath)
+                    bundle.putString("voteaverage", it.voteAverage.toString())
                     findNavController().navigate(R.id.action_homeFragment_to_detailMovieFragment, bundle)
                 }
             }
@@ -140,6 +152,9 @@ class HomeFragment : Fragment() {
                     val id = it.id
                     val bundle = Bundle()
                     bundle.putInt("id", id)
+                    bundle.putString("title", it.title)
+                    bundle.putString("posterpath", it.posterPath)
+                    bundle.putString("voteaverage", it.voteAverage.toString())
                     findNavController().navigate(R.id.action_homeFragment_to_detailMovieFragment, bundle)
                 }
             }

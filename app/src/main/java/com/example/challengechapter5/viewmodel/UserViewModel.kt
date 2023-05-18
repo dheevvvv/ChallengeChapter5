@@ -19,8 +19,14 @@ class UserViewModel(application: Application):AndroidViewModel(application) {
     private val _username = MutableLiveData<String>()
     val username: LiveData<String> = _username
 
+    private val _email = MutableLiveData<String>()
+    val email: LiveData<String> = _email
+
     private val _profilePhoto = MutableLiveData<String>()
     val profilePhoto: LiveData<String> = _profilePhoto
+
+    private val _userId = MutableLiveData<Int>()
+    val userId: LiveData<Int> = _userId
 
     private val _profilePhotoBitmap = MutableLiveData<Bitmap>()
     val profilePhotoBitmap: LiveData<Bitmap> = _profilePhotoBitmap
@@ -34,6 +40,20 @@ class UserViewModel(application: Application):AndroidViewModel(application) {
         viewModelScope.launch {
             val username = userManager.getUsername()
             _username.postValue(username)
+        }
+    }
+
+    fun getEmail(){
+        viewModelScope.launch {
+            val email = userManager.getEmail()
+            _email.postValue(email)
+        }
+    }
+
+    fun getUserId(email: String){
+        GlobalScope.launch {
+            val userId = userDAO.getUserIdByEmail(email)
+            _userId.postValue(userId)
         }
     }
 

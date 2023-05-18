@@ -4,9 +4,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.challengechapter5.database_room.FavoriteMoviesData
+import com.example.challengechapter5.database_room.MovieDatabase
 import com.example.challengechapter5.model.*
 import com.example.challengechapter5.networking.ApiService
 import com.example.challengechapter5.networking.RetrofitClient
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import retrofit2.Call
 import retrofit2.Response
 import javax.security.auth.callback.Callback
@@ -32,6 +36,7 @@ class MovieViewModel():ViewModel() {
 
     private val _tvSeriesDetail = MutableLiveData<TvSeriesDetailResponse>()
     val tvSeriesDetail : LiveData<TvSeriesDetailResponse> = _tvSeriesDetail
+
 
 
     fun callGetPopularMovies(){
@@ -194,4 +199,6 @@ class MovieViewModel():ViewModel() {
 
         })
     }
+
+
 }

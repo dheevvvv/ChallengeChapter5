@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.LiveData
+import com.example.challengechapter5.database_room.FavoriteMoviesData
 import com.example.challengechapter5.database_room.MovieDatabase
 import com.example.challengechapter5.database_room.UserData
 import com.google.firebase.auth.FirebaseUser
@@ -72,6 +73,11 @@ class UserManager(private val context: Context) {
             }
     }
 
+    suspend fun getEmail():String{
+        val preferences = context.datastore.data.first()
+        return preferences[EMAIL] ?: ""
+    }
+
     suspend fun getUsername(): String {
         val preferences = context.datastore.data.first()
         return preferences[USERNAME] ?: ""
@@ -82,10 +88,11 @@ class UserManager(private val context: Context) {
         return preferences[PROFILE_PHOTO] ?: ""
     }
 
-
-
-
-
-
-
+//    suspend fun addFavoriteMovie(movieId: Int) {
+//        val userId = getUserId()
+//        if (userId.isNotBlank()) {
+//            val favoriteMovie = FavoriteMoviesData(userId = userId.toInt(), movieId = movieId, )
+//            movieDatabase.movieDao().insertFavoriteMovie(favoriteMovie)
+//        }
+//    }
 }
