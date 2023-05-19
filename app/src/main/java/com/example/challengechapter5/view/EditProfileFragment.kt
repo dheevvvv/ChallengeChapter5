@@ -22,11 +22,14 @@ import com.example.challengechapter5.database_room.UserData
 import com.example.challengechapter5.databinding.FragmentEditProfileBinding
 import com.example.challengechapter5.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayOutputStream
 
 
+@AndroidEntryPoint
 class EditProfileFragment : Fragment() {
     private lateinit var binding:FragmentEditProfileBinding
+
     private lateinit var userViewModel: UserViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

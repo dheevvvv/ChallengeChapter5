@@ -20,8 +20,10 @@ import com.example.challengechapter5.model.ResultPopular
 import com.example.challengechapter5.view.adapter.MovieAdapter
 import com.example.challengechapter5.viewmodel.MovieViewModel
 import com.example.challengechapter5.viewmodel.UserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val movieViewModel:MovieViewModel by viewModels()

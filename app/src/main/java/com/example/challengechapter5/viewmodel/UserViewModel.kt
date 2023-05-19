@@ -6,16 +6,21 @@ import android.graphics.BitmapFactory
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.challengechapter5.database_room.MovieDatabase
+import com.example.challengechapter5.database_room.UserDAO
 import com.example.challengechapter5.database_room.UserData
 import com.example.challengechapter5.datastore_preferences.UserManager
 import com.google.firebase.auth.FirebaseUser
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class UserViewModel(application: Application):AndroidViewModel(application) {
+@HiltViewModel
+class UserViewModel @Inject constructor(val userDAO: UserDAO, val userManager: UserManager):ViewModel() {
     private val _username = MutableLiveData<String>()
     val username: LiveData<String> = _username
 
@@ -31,9 +36,7 @@ class UserViewModel(application: Application):AndroidViewModel(application) {
     private val _profilePhotoBitmap = MutableLiveData<Bitmap>()
     val profilePhotoBitmap: LiveData<Bitmap> = _profilePhotoBitmap
 
-    private val userDAO = MovieDatabase.getInstance(getApplication())?.userDao()!!
 
-    val userManager = UserManager.getInstance(application)
 
 
     fun getUsername() {
@@ -79,16 +82,14 @@ class UserViewModel(application: Application):AndroidViewModel(application) {
 
     fun insertUser(userData: UserData){
         GlobalScope.async {
-            val userDAO = MovieDatabase.getInstance(getApplication())?.userDao()!!
             userDAO.insertUser(userData)
         }
     }
-    fun checkUser(email : String, password : String) : LiveData<UserData> = MovieDatabase.getInstance((getApplication()))!!.userDao().checkUser(email, password)
+    fun checkUser(email : String, password : String) : LiveData<UserData> = userDAO.checkUser(email, password)
 
 
     fun updateUser(userData: UserData){
         GlobalScope.async {
-            val userDAO = MovieDatabase.getInstance(getApplication())?.userDao()
             userDAO?.updateUser(userData)
         }
     }

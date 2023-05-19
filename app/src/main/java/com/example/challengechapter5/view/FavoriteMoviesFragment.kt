@@ -17,8 +17,9 @@ import com.example.challengechapter5.view.adapter.FavoriteMoviesAdapter
 import com.example.challengechapter5.viewmodel.FavoriteViewModel
 import com.example.challengechapter5.viewmodel.MovieViewModel
 import com.example.challengechapter5.viewmodel.UserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class FavoriteMoviesFragment : Fragment() {
     private lateinit var binding: FragmentFavoriteMoviesBinding
     private lateinit var favoriteViewModel: FavoriteViewModel

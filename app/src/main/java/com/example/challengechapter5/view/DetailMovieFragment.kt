@@ -17,9 +17,10 @@ import com.example.challengechapter5.databinding.FragmentDetailMovieBinding
 import com.example.challengechapter5.viewmodel.FavoriteViewModel
 import com.example.challengechapter5.viewmodel.MovieViewModel
 import com.example.challengechapter5.viewmodel.UserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
 
-
+@AndroidEntryPoint
 class DetailMovieFragment : Fragment() {
     private lateinit var binding: FragmentDetailMovieBinding
     private lateinit var viewModel: MovieViewModel

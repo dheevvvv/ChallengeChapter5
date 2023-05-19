@@ -12,10 +12,13 @@ import com.example.challengechapter5.R
 import com.example.challengechapter5.database_room.UserData
 import com.example.challengechapter5.databinding.FragmentRegisterBinding
 import com.example.challengechapter5.viewmodel.UserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
+
     private lateinit var userViewModel: UserViewModel
 
     override fun onCreateView(

@@ -15,8 +15,9 @@ import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class UserManager(private val context: Context) {
+class UserManager @Inject constructor(private val context: Context) {
     private val preferenceName = "prefs"
     private val Context.datastore by preferencesDataStore(preferenceName)
 
