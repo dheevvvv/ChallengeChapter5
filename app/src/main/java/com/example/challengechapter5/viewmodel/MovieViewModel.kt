@@ -4,18 +4,16 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.challengechapter5.database_room.FavoriteMoviesData
-import com.example.challengechapter5.database_room.MovieDatabase
 import com.example.challengechapter5.model.*
 import com.example.challengechapter5.networking.ApiService
-import com.example.challengechapter5.networking.RetrofitClient
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Response
-import javax.security.auth.callback.Callback
+import javax.inject.Inject
 
-class MovieViewModel():ViewModel() {
+@Suppress("UNNECESSARY_NOT_NULL_ASSERTION", "MemberVisibilityCanBePrivate")
+@HiltViewModel
+open class MovieViewModel @Inject constructor(val apiService: ApiService):ViewModel() {
     private val _popularMovies = MutableLiveData<List<ResultPopular>>()
     val popularMovies : LiveData<List<ResultPopular>> = _popularMovies
 
@@ -40,7 +38,7 @@ class MovieViewModel():ViewModel() {
 
 
     fun callGetPopularMovies(){
-        RetrofitClient.RetrofitClient.instance.getPopularMovies().enqueue(object :retrofit2.Callback<PopularMoviesResponse>{
+        apiService.getPopularMovies().enqueue(object :retrofit2.Callback<PopularMoviesResponse>{
             override fun onResponse(
                 call: Call<PopularMoviesResponse>,
                 response: Response<PopularMoviesResponse>
@@ -63,7 +61,7 @@ class MovieViewModel():ViewModel() {
     }
 
     fun callGetTopRatedMovies(){
-        RetrofitClient.RetrofitClient.instance.getTopRatedMovies().enqueue(object : retrofit2.Callback<PopularMoviesResponse>{
+        apiService.getTopRatedMovies().enqueue(object : retrofit2.Callback<PopularMoviesResponse>{
             override fun onResponse(
                 call: Call<PopularMoviesResponse>,
                 response: Response<PopularMoviesResponse>
@@ -86,7 +84,7 @@ class MovieViewModel():ViewModel() {
     }
 
     fun callGetUpcomingMovies(){
-        RetrofitClient.RetrofitClient.instance.getUpcomingMovies().enqueue(object : retrofit2.Callback<PopularMoviesResponse>{
+        apiService.getUpcomingMovies().enqueue(object : retrofit2.Callback<PopularMoviesResponse>{
             override fun onResponse(
                 call: Call<PopularMoviesResponse>,
                 response: Response<PopularMoviesResponse>
@@ -109,7 +107,7 @@ class MovieViewModel():ViewModel() {
     }
 
     fun callGetDetailMovie(movie_id:Int){
-        RetrofitClient.RetrofitClient.instance.getMovieDetail(movie_id).enqueue(object : retrofit2.Callback<MoviesDetailResponse>{
+        apiService.getMovieDetail(movie_id).enqueue(object : retrofit2.Callback<MoviesDetailResponse>{
             override fun onResponse(
                 call: Call<MoviesDetailResponse>,
                 response: Response<MoviesDetailResponse>
@@ -132,7 +130,7 @@ class MovieViewModel():ViewModel() {
     }
 
     fun callGetTvSeriesPopular(){
-        RetrofitClient.RetrofitClient.instance.getTvPopular().enqueue(object : retrofit2.Callback<PopularMoviesResponse>{
+        apiService.getTvPopular().enqueue(object : retrofit2.Callback<PopularMoviesResponse>{
             override fun onResponse(
                 call: Call<PopularMoviesResponse>,
                 response: Response<PopularMoviesResponse>
@@ -155,7 +153,7 @@ class MovieViewModel():ViewModel() {
     }
 
     fun callGetTvSeriesTopRated(){
-        RetrofitClient.RetrofitClient.instance.getTvOnTheAir().enqueue(object : retrofit2.Callback<PopularMoviesResponse>{
+        apiService.getTvOnTheAir().enqueue(object : retrofit2.Callback<PopularMoviesResponse>{
             override fun onResponse(
                 call: Call<PopularMoviesResponse>,
                 response: Response<PopularMoviesResponse>
@@ -178,7 +176,7 @@ class MovieViewModel():ViewModel() {
     }
 
     fun callGetTvSeriesDetail(series_id:Int){
-        RetrofitClient.RetrofitClient.instance.getTvSeriesDetail(series_id).enqueue(object :retrofit2.Callback<TvSeriesDetailResponse>{
+        apiService.getTvSeriesDetail(series_id).enqueue(object :retrofit2.Callback<TvSeriesDetailResponse>{
             override fun onResponse(
                 call: Call<TvSeriesDetailResponse>,
                 response: Response<TvSeriesDetailResponse>

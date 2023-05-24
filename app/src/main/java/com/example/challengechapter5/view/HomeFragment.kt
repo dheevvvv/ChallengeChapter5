@@ -1,3 +1,5 @@
+@file:Suppress("RedundantNullableReturnType")
+
 package com.example.challengechapter5.view
 
 import android.annotation.SuppressLint
@@ -7,21 +9,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challengechapter5.R
 import com.example.challengechapter5.databinding.FragmentHomeBinding
-import com.example.challengechapter5.model.ResultPopular
 import com.example.challengechapter5.view.adapter.MovieAdapter
 import com.example.challengechapter5.viewmodel.MovieViewModel
 import com.example.challengechapter5.viewmodel.UserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@Suppress("RedundantSamConstructor", "NestedLambdaShadowedImplicitParameter")
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val movieViewModel:MovieViewModel by viewModels()
@@ -58,7 +59,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun showDataPopularMovie(){
+    private fun showDataPopularMovie(){
         movieViewModel.callGetPopularMovies()
         movieViewModel.popularMovies.observe(viewLifecycleOwner, Observer {
             if (it != null){
@@ -81,7 +82,7 @@ class HomeFragment : Fragment() {
         })
     }
 
-    fun showdataTopRatedMovies(){
+    private fun showdataTopRatedMovies(){
         movieViewModel.callGetTopRatedMovies()
         movieViewModel.movieTopRated.observe(viewLifecycleOwner, Observer {
             if (it != null){
@@ -101,7 +102,7 @@ class HomeFragment : Fragment() {
         })
     }
 
-    fun showDataUpcomingMovies(){
+    private fun showDataUpcomingMovies(){
         movieViewModel.callGetUpcomingMovies()
         movieViewModel.upcomingMovies.observe(viewLifecycleOwner, Observer {
             if (it != null){
@@ -121,7 +122,7 @@ class HomeFragment : Fragment() {
         })
     }
 
-    fun showDataPopularTvSeries(){
+    private fun showDataPopularTvSeries(){
         movieViewModel.callGetTvSeriesPopular()
         movieViewModel.popularTvSeries.observe(viewLifecycleOwner, Observer {
             if (it!=null){
@@ -141,7 +142,7 @@ class HomeFragment : Fragment() {
         })
     }
 
-    fun showDataTopRatedTvSeries(){
+    private fun showDataTopRatedTvSeries(){
         movieViewModel.callGetTvSeriesTopRated()
         movieViewModel.topRatedTvSeries.observe(viewLifecycleOwner, Observer {
             if (it!=null){

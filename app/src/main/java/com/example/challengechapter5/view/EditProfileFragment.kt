@@ -1,3 +1,5 @@
+@file:Suppress("RedundantNullableReturnType")
+
 package com.example.challengechapter5.view
 
 import android.app.Activity.RESULT_OK
@@ -13,7 +15,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -21,12 +22,14 @@ import com.example.challengechapter5.R
 import com.example.challengechapter5.database_room.UserData
 import com.example.challengechapter5.databinding.FragmentEditProfileBinding
 import com.example.challengechapter5.viewmodel.UserViewModel
-import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayOutputStream
 
 
+@AndroidEntryPoint
 class EditProfileFragment : Fragment() {
     private lateinit var binding:FragmentEditProfileBinding
+
     private lateinit var userViewModel: UserViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +43,7 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        @Suppress("ReplaceGetOrSet")
         userViewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
         binding.btnSaveEdit.setOnClickListener {
             saveEdit()
@@ -64,6 +68,7 @@ class EditProfileFragment : Fragment() {
 //        Toast.makeText(requireContext(), "save edit profile berhasil", Toast.LENGTH_SHORT).show()
 //    }
 
+    @Suppress("DEPRECATION", "ReplaceIsEmptyWithIfEmpty")
     fun saveEdit() {
         val dataUser = arguments?.getSerializable("dataUser") as UserData
         val imgProfile = binding.etImageProfile.text.toString()
@@ -91,6 +96,7 @@ class EditProfileFragment : Fragment() {
 
     }
 
+    @Suppress("DEPRECATION")
     private fun intentCamera() {
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         try {
@@ -100,6 +106,7 @@ class EditProfileFragment : Fragment() {
         }
     }
 
+    @Suppress("DEPRECATION")
     private fun intentGallery() {
         val galleryIntent = Intent(
             Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI
@@ -108,6 +115,7 @@ class EditProfileFragment : Fragment() {
     }
 
 
+    @Suppress("OVERRIDE_DEPRECATION", "DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1 && resultCode == RESULT_OK) {
@@ -139,7 +147,7 @@ class EditProfileFragment : Fragment() {
         return Base64.encodeToString(byteArray, Base64.DEFAULT)
     }
     private fun base64ToBitmap(encodedImage: String): Bitmap? {
-        val decodedByteArray = android.util.Base64.decode(encodedImage, android.util.Base64.DEFAULT)
+        val decodedByteArray = Base64.decode(encodedImage, Base64.DEFAULT)
         return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.size)
     }
 

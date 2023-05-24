@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 
+@Suppress("RedundantNullableReturnType")
 class SplashFragment : Fragment() {
     private lateinit var binding: FragmentSplashBinding
     private lateinit var userManager:UserManager
@@ -28,6 +29,7 @@ class SplashFragment : Fragment() {
         return binding.root
     }
 
+    @Suppress("DEPRECATION")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

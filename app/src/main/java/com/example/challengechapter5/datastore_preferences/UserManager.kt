@@ -4,19 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import androidx.lifecycle.LiveData
-import com.example.challengechapter5.database_room.FavoriteMoviesData
-import com.example.challengechapter5.database_room.MovieDatabase
-import com.example.challengechapter5.database_room.UserData
-import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class UserManager(private val context: Context) {
+class UserManager @Inject constructor(private val context: Context) {
     private val preferenceName = "prefs"
     private val Context.datastore by preferencesDataStore(preferenceName)
 

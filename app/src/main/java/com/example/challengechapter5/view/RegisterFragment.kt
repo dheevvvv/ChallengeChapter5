@@ -12,10 +12,14 @@ import com.example.challengechapter5.R
 import com.example.challengechapter5.database_room.UserData
 import com.example.challengechapter5.databinding.FragmentRegisterBinding
 import com.example.challengechapter5.viewmodel.UserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@Suppress("RedundantNullableReturnType")
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
+
     private lateinit var userViewModel: UserViewModel
 
     override fun onCreateView(
@@ -27,6 +31,7 @@ class RegisterFragment : Fragment() {
         return binding.root
     }
 
+    @Suppress("ReplaceGetOrSet")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -36,11 +41,12 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    fun saveUser(username : String,email : String,password : String, profile_photo:String){
+    private fun saveUser(username : String, email : String, password : String, @Suppress("SameParameterValue") profile_photo:String){
         userViewModel.insertUser(UserData(0,username,email,password, profile_photo))
     }
 
-    fun register(){
+
+    private fun register(){
         val username = binding.etUsernameRegist.text.toString()
         val email = binding.etEmailRegist.text.toString()
         val password = binding.etPasswordRegist.text.toString()
