@@ -50,7 +50,6 @@ object AppModule {
         val apiKey = "6cb32867a94de7a19988927b1aece140"
         return ApiKeyInterceptor(apiKey)
     }
-
     @Singleton
     @Provides
     fun provideRetrofitClient(apiKeyInterceptor: ApiKeyInterceptor): RetrofitClient.RetrofitClient {
@@ -59,7 +58,20 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideApiService(retrofitClient: RetrofitClient.RetrofitClient): ApiService {
-        return retrofitClient.instance
+    fun provideApiService(retrofit: RetrofitClient.RetrofitClient): ApiService {
+        return retrofit.instance
     }
+
+
+//    @Singleton
+//    @Provides
+//    fun provideRetrofitClient(apiKeyInterceptor: ApiKeyInterceptor): RetrofitClient.RetrofitClient {
+//        return RetrofitClient.RetrofitClient
+//    }
+//
+//    @Singleton
+//    @Provides
+//    fun provideApiService(retrofitClient: RetrofitClient.RetrofitClient): ApiService {
+//        return retrofitClient.instance
+//    }
 }

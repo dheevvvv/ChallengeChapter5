@@ -21,7 +21,9 @@ data class FavoriteMoviesData(
     @ColumnInfo(name = "posterpath")
     val posterPath:String,
     @ColumnInfo(name = "voteaverage")
-    val voteAverage:Double
+    val voteAverage:Double,
+    @ColumnInfo(name = "isFavorite")
+    var isFavorite:Boolean
 
 
 

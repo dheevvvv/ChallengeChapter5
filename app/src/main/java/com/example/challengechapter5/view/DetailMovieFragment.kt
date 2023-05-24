@@ -35,6 +35,7 @@ class DetailMovieFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentDetailMovieBinding.inflate(layoutInflater, container, false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,19 +48,28 @@ class DetailMovieFragment : Fragment() {
         val posterPath = arguments?.getString("posterpath")
         val voteAverage = arguments?.getDouble("voteaverage")
 
+
         userViewModel.getEmail()
         userViewModel.email.observe(viewLifecycleOwner, Observer {email->
             userViewModel.getUserId(email)
             userViewModel.userId.observe(viewLifecycleOwner, Observer {
                 val userId = it
                 binding.btnAddtoFavorite.setOnClickListener {
-                    binding.ivFavoriteStar.setImageResource(R.drawable.ic_favoriteyellow)
-                    favoriteViewModel.insertFavoriteMovies(FavoriteMoviesData(movieId = dataId!!.toInt(), userId = userId, title = title.toString(), posterPath = posterPath.toString(), voteAverage = voteAverage!!))
+                    val isCurrentFavorite = favoriteViewModel.favoriteStatusMap[dataId!!.toInt()] ?: false
+                    if (isCurrentFavorite) {
+                        
+                        favoriteViewModel.deleteFavoriteMovies(dataId!!.toInt(), userId)
+                        binding.ivFavoriteStar.setImageResource(R.drawable.ic_favorite)
+                    } else {
+
+                        favoriteViewModel.insertFavoriteMovies(FavoriteMoviesData(movieId = dataId.toInt(), userId = userId, title = title.toString(), posterPath = posterPath.toString(), voteAverage = voteAverage!!, isFavorite = true))
+                        binding.ivFavoriteStar.setImageResource(R.drawable.ic_favoriteyellow)
+                    }
+
+                        favoriteViewModel.favoriteStatusMap[dataId.toInt()] = !isCurrentFavorite
                 }
             })
         })
-
-
 
         if (dataId != null) {
             id = dataId.toString()
@@ -67,6 +77,13 @@ class DetailMovieFragment : Fragment() {
         getDetailMovie()
         getDetailTvSeries()
 
+        favoriteViewModel.loadFavoriteStatus(dataId!!.toInt())
+        val isCurrentFavorite = favoriteViewModel.favoriteStatusMap[dataId.toInt()] ?: false
+        if (isCurrentFavorite) {
+            binding.ivFavoriteStar.setImageResource(R.drawable.ic_favoriteyellow)
+        } else {
+            binding.ivFavoriteStar.setImageResource(R.drawable.ic_favorite)
+        }
 
     }
 
@@ -103,6 +120,5 @@ class DetailMovieFragment : Fragment() {
             }
         })
     }
-
 
 }

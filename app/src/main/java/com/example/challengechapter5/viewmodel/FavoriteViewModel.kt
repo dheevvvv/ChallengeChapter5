@@ -13,6 +13,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import java.sql.RowId
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,7 +22,21 @@ class FavoriteViewModel @Inject constructor(val favoriteMoviesDAO: FavoriteMovie
     private var _favoriteMovies : MutableLiveData<List<FavoriteMoviesData>> = MutableLiveData()
     val favoriteMovies : LiveData<List<FavoriteMoviesData>> get() = _favoriteMovies
 
+    private var _favoriteMovie : MutableLiveData<FavoriteMoviesData> = MutableLiveData()
+    val favoriteMovie : LiveData<FavoriteMoviesData> get() = _favoriteMovie
 
+    var _isFavorite = MutableLiveData<Boolean>()
+    val isFavorite:LiveData<Boolean> get() = _isFavorite
+
+    val favoriteStatusMap: MutableMap<Int, Boolean> = mutableMapOf()
+
+    fun loadFavoriteStatus(movieId: Int) {
+        GlobalScope.launch {
+            val isFavorite = favoriteMoviesDAO.getIsFavorite(movieId)
+            favoriteStatusMap[movieId] = isFavorite
+        }
+
+    }
 
 
     fun insertFavoriteMovies(favoriteMoviesData: FavoriteMoviesData){
@@ -29,6 +44,13 @@ class FavoriteViewModel @Inject constructor(val favoriteMoviesDAO: FavoriteMovie
             favoriteMoviesDAO.insert(favoriteMoviesData)
         }
     }
+
+    fun deleteFavoriteMovies(movieId: Int, userId: Int) {
+        GlobalScope.async {
+            favoriteMoviesDAO.deleteFavoriteMoviesByIdAndUser(movieId, userId)
+        }
+    }
+
 
     fun getFavoriteMovies(userId: Int){
         GlobalScope.launch {
