@@ -78,6 +78,8 @@ class LoginFragment : Fragment() {
         binding.tvRegisterLogin.setOnClickListener {
             newRegist()
         }
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

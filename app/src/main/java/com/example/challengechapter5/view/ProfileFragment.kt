@@ -50,6 +50,7 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         userManager = UserManager.getInstance(requireContext())
@@ -157,6 +158,12 @@ class ProfileFragment : Fragment() {
             }
             findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
             Toast.makeText(context, "Logging Out", Toast.LENGTH_SHORT).show()
+
+            //            val intent = Intent(requireContext(), MainActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+//            startActivity(intent)
+//            requireActivity().finish()
+
         }
     }
 
