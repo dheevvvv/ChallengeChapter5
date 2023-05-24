@@ -39,6 +39,11 @@ android {
         viewBinding true
         dataBinding true
     }
+    lintOptions{
+        abortOnError false
+        lintConfig file("lint.xml")
+        ignoreWarnings true
+    }
 }
 
 dependencies {

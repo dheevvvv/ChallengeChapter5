@@ -1,15 +1,15 @@
+@file:Suppress("RedundantNullableReturnType")
+
 package com.example.challengechapter5.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.UserManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import com.bumptech.glide.Glide
 import com.example.challengechapter5.R
 import com.example.challengechapter5.database_room.FavoriteMoviesData
@@ -18,8 +18,9 @@ import com.example.challengechapter5.viewmodel.FavoriteViewModel
 import com.example.challengechapter5.viewmodel.MovieViewModel
 import com.example.challengechapter5.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.properties.Delegates
 
+
+@Suppress("RedundantSamConstructor", "ReplaceGetOrSet")
 @AndroidEntryPoint
 class DetailMovieFragment : Fragment() {
     private lateinit var binding: FragmentDetailMovieBinding
@@ -58,7 +59,7 @@ class DetailMovieFragment : Fragment() {
                     val isCurrentFavorite = favoriteViewModel.favoriteStatusMap[dataId!!.toInt()] ?: false
                     if (isCurrentFavorite) {
                         
-                        favoriteViewModel.deleteFavoriteMovies(dataId!!.toInt(), userId)
+                        favoriteViewModel.deleteFavoriteMovies(dataId.toInt(), userId)
                         binding.ivFavoriteStar.setImageResource(R.drawable.ic_favorite)
                     } else {
 

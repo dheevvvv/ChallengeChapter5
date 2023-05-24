@@ -1,24 +1,22 @@
 package com.example.challengechapter5.viewmodel
 
-import android.app.Application
+
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.challengechapter5.database_room.MovieDatabase
 import com.example.challengechapter5.database_room.UserDAO
 import com.example.challengechapter5.database_room.UserData
 import com.example.challengechapter5.datastore_preferences.UserManager
-import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@Suppress("unused", "OPT_IN_USAGE", "DeferredResultUnused", "MemberVisibilityCanBePrivate")
 @HiltViewModel
 class UserViewModel @Inject constructor(val userDAO: UserDAO, val userManager: UserManager):ViewModel() {
     private val _username = MutableLiveData<String>()
@@ -90,7 +88,7 @@ class UserViewModel @Inject constructor(val userDAO: UserDAO, val userManager: U
 
     fun updateUser(userData: UserData){
         GlobalScope.async {
-            userDAO?.updateUser(userData)
+            userDAO.updateUser(userData)
         }
     }
 

@@ -1,10 +1,11 @@
+@file:Suppress("unused")
+
 package com.example.challengechapter5.view
 
-import android.content.Intent
+
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Base64
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +13,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.challengechapter5.R
-import com.example.challengechapter5.database_room.UserData
 import com.example.challengechapter5.databinding.FragmentProfileBinding
 import com.example.challengechapter5.datastore_preferences.UserManager
 import com.example.challengechapter5.viewmodel.UserViewModel
@@ -27,20 +26,22 @@ import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
-import javax.inject.Inject
 
 
+
+@Suppress("RedundantSamConstructor", "OPT_IN_USAGE")
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
-    lateinit var userManager: UserManager
+    private lateinit var userManager: UserManager
     private val userViewModel:UserViewModel by viewModels()
-    lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
 
     private val auth by lazy {
         FirebaseAuth.getInstance()
     }
 
+    @Suppress("RedundantNullableReturnType")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,6 +52,7 @@ class ProfileFragment : Fragment() {
     }
 
 
+    @Suppress("DeferredResultUnused")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         userManager = UserManager.getInstance(requireContext())

@@ -22,7 +22,6 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -32,6 +31,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 
+@Suppress("RedundantNullableReturnType", "ReplaceGetOrSet")
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
@@ -82,6 +82,7 @@ class LoginFragment : Fragment() {
 
     }
 
+    @Suppress("OVERRIDE_DEPRECATION", "DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQ_CODE) {
@@ -97,6 +98,7 @@ class LoginFragment : Fragment() {
         }
     }
 
+    @Suppress("DEPRECATION")
     private fun signInGoogle() {
         val signInIntent: Intent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, REQ_CODE)
@@ -114,6 +116,7 @@ class LoginFragment : Fragment() {
     }
 
     // this is where we update the UI after Google signin takes place
+    @Suppress("OPT_IN_USAGE", "DeferredResultUnused", "FunctionName")
     private fun UpdateUI(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener { task ->
@@ -127,10 +130,12 @@ class LoginFragment : Fragment() {
         }
     }
 
-    fun saveUser(username : String,email : String,password : String, profile_photo:String){
+    @Suppress("SameParameterValue")
+    private fun saveUser(username : String, email : String, password : String, profile_photo:String){
         userViewModel.insertUser(UserData(0,username,email,password, profile_photo))
     }
 
+    @Suppress("OPT_IN_USAGE")
     private fun checkUser(email: String, password: String) {
         userViewModel.checkUser(email, password).observe(viewLifecycleOwner) {
             if (it == null) {
@@ -145,13 +150,13 @@ class LoginFragment : Fragment() {
         }
     }
 
-    fun login() {
+    private fun login() {
         val emailLogin = binding.etEmailLogin.text.toString()
         val passwordLogin = binding.etPasswordLogin.text.toString()
         checkUser(emailLogin,passwordLogin)
     }
 
-    fun newRegist() {
+    private fun newRegist() {
         findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
     }
 

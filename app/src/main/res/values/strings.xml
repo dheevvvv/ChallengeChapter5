@@ -38,4 +38,5 @@
     <string name="upload_from_camera">Upload from Camera</string>
     <string name="your_favorite_movies">Your Favorite Movies</string>
     <string name="add_to_favorite">Add to Favorite</string>
+    <string name="favorite_movies">Favorite Movies</string>
 </resources>

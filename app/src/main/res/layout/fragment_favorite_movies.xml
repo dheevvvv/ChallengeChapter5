@@ -32,7 +32,7 @@
             android:layout_gravity="center"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:text="Favorite Movies"
+            android:text="@string/favorite_movies"
             tools:ignore="TextContrastCheck"
             tools:layout_editor_absoluteX="152dp"
             tools:layout_editor_absoluteY="11dp" />

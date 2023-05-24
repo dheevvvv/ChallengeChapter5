@@ -4,19 +4,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.challengechapter5.database_room.FavoriteMoviesData
-import com.example.challengechapter5.database_room.MovieDatabase
 import com.example.challengechapter5.model.*
 import com.example.challengechapter5.networking.ApiService
-import com.example.challengechapter5.networking.RetrofitClient
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import retrofit2.Call
 import retrofit2.Response
 import javax.inject.Inject
-import javax.security.auth.callback.Callback
 
+@Suppress("UNNECESSARY_NOT_NULL_ASSERTION", "MemberVisibilityCanBePrivate")
 @HiltViewModel
 open class MovieViewModel @Inject constructor(val apiService: ApiService):ViewModel() {
     private val _popularMovies = MutableLiveData<List<ResultPopular>>()

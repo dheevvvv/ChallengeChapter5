@@ -1,7 +1,6 @@
 package com.example.challengechapter5.dagger_hilt
 
 import android.app.Application
-import android.content.Context
 import com.example.challengechapter5.database_room.FavoriteMoviesDAO
 import com.example.challengechapter5.database_room.MovieDatabase
 import com.example.challengechapter5.database_room.UserDAO
@@ -13,6 +12,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 
@@ -44,6 +46,22 @@ object AppModule {
         return favoriteMoviesDao.favoriteMoviesDao()
     }
 
+    private const val BASE_URL ="https://api.themoviedb.org/3/"
+    private const val API_KEY = "6cb32867a94de7a19988927b1aece140"
+
+    private val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(ApiKeyInterceptor(API_KEY))
+        .build()
+
+    @Singleton
+    @Provides
+    fun provideRetrofitClient(): Retrofit =
+    Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .client(okHttpClient)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
     @Singleton
     @Provides
     fun provideApiKeyInterceptor(): ApiKeyInterceptor {
@@ -52,26 +70,9 @@ object AppModule {
     }
     @Singleton
     @Provides
-    fun provideRetrofitClient(apiKeyInterceptor: ApiKeyInterceptor): RetrofitClient.RetrofitClient {
-        return RetrofitClient.RetrofitClient
-    }
-
-    @Singleton
-    @Provides
-    fun provideApiService(retrofit: RetrofitClient.RetrofitClient): ApiService {
-        return retrofit.instance
-    }
+    fun provideApiService(retrofit: Retrofit): ApiService =
+        retrofit.create(ApiService::class.java)
 
 
-//    @Singleton
-//    @Provides
-//    fun provideRetrofitClient(apiKeyInterceptor: ApiKeyInterceptor): RetrofitClient.RetrofitClient {
-//        return RetrofitClient.RetrofitClient
-//    }
-//
-//    @Singleton
-//    @Provides
-//    fun provideApiService(retrofitClient: RetrofitClient.RetrofitClient): ApiService {
-//        return retrofitClient.instance
-//    }
+
 }

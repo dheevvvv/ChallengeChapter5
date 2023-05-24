@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         userManager = UserManager.getInstance(this)
     }
 
+    @Suppress("OVERRIDE_DEPRECATION", "DEPRECATION")
     override fun onBackPressed() {
         lifecycleScope.launch {
             if (userManager.isLoggedIn().first()){

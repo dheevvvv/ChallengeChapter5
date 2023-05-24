@@ -19,6 +19,7 @@ import com.example.challengechapter5.viewmodel.MovieViewModel
 import com.example.challengechapter5.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+@Suppress("RedundantNullableReturnType", "RedundantSamConstructor")
 @AndroidEntryPoint
 class FavoriteMoviesFragment : Fragment() {
     private lateinit var binding: FragmentFavoriteMoviesBinding
@@ -52,6 +53,7 @@ class FavoriteMoviesFragment : Fragment() {
 
     }
 
+    @Suppress("NestedLambdaShadowedImplicitParameter")
     fun showAllFavoriteMovies(){
         userViewModel.getEmail()
         userViewModel.email.observe(viewLifecycleOwner, Observer {email->

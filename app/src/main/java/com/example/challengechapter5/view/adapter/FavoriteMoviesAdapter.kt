@@ -6,8 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.challengechapter5.database_room.FavoriteMoviesData
 import com.example.challengechapter5.databinding.ItemFavoriteMovieBinding
-import com.example.challengechapter5.databinding.ItemMovieBinding
-import com.example.challengechapter5.model.ResultPopular
+
 
 class FavoriteMoviesAdapter(private val listFavoriteMovies: List<FavoriteMoviesData>) : RecyclerView.Adapter<FavoriteMoviesAdapter.ViewHolder>() {
     var onClick: ((FavoriteMoviesData)->Unit)? = null
