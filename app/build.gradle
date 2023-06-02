@@ -44,6 +44,18 @@ android {
         lintConfig file("lint.xml")
         ignoreWarnings true
     }
+
+    flavorDimensions("movies")
+    productFlavors{
+        netflixx{
+            applicationIdSuffix ".netflixx"
+            dimension "movies"
+        }
+        viuuu{
+            applicationIdSuffix ".viuuu"
+            dimension "movies"
+        }
+    }
 }
 
 dependencies {
