@@ -1,8 +1,10 @@
 package com.example.challengechapter5.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
 import com.example.challengechapter5.database_room.UserDAO
 import com.example.challengechapter5.datastore_preferences.UserManager
+import io.mockk.impl.annotations.MockK
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -14,6 +16,8 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
+import org.mockito.kotlin.argumentCaptor
+import org.mockito.kotlin.doAnswer
 
 
 class UserViewModelTest {
@@ -65,4 +69,46 @@ class UserViewModelTest {
         val actualUsername = viewModel.username.value
         assertEquals(expectedUsername, actualUsername)
     }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun testGetEmail() = testDispatcher.runBlockingTest {
+        // Mock data
+        val expectedEmail = "test@example.com"
+        `when`(userManager.getEmail()).thenReturn(expectedEmail)
+
+        // Run the function
+        viewModel.getEmail()
+
+        // Advance the dispatcher to execute coroutines
+        testDispatcher.advanceUntilIdle()
+
+        // Verify the result
+        val actualEmail = viewModel.email.value
+        assertEquals(expectedEmail, actualEmail)
+    }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun testGetProfilePhoto() = testDispatcher.runBlockingTest {
+        // Mock data
+        val expectedProfilePhoto = "https://example.com/profile.jpg"
+
+        // Stub the userManager.getProfilePhoto() function
+        `when`(userManager.getProfilePhoto()).thenReturn(expectedProfilePhoto)
+
+        // Run the function
+        viewModel.getProfilePhoto()
+
+        // Advance the dispatcher to execute coroutines
+        testDispatcher.advanceUntilIdle()
+
+        // Verify the result
+        val actualProfilePhoto = viewModel.profilePhoto.value
+        assertEquals(expectedProfilePhoto, actualProfilePhoto)
+    }
+
+
+
+
 }
