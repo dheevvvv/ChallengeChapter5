@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:596775787608:android:5fab70b5174db465f0fe2d",
         "android_client_info": {
-          "package_name": "com.example.challengechapter5.netflixx"
+          "package_name": "com.example.challengechapter5"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "596775787608-5a1t9q969ohiodameqlukanagqjpdvof.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.challengechapter5.netflixx",
+            "package_name": "com.example.challengechapter5",
             "certificate_hash": "964e6bb28ff4543f0b894bd660554c40adbf4dc7"
           }
         },

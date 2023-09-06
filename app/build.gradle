@@ -48,7 +48,7 @@ android {
     flavorDimensions("movies")
     productFlavors{
         netflixx{
-            applicationIdSuffix ".netflixx"
+            applicationIdSuffix ""
             dimension "movies"
         }
         viuuu{
