@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">ChallengeChapter5</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="title_movie">Title Movie</string>
+    <string name="_8">8</string>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="upcoming_movies">Upcoming Movies</string>
+    <string name="top_rated_movies">Top Rated Movies</string>
+    <string name="popular_tv_series">Popular TV Series</string>
+    <string name="on_the_air_series">On The Air Series</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="register">Register</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="username">Username</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="usernameprofile">Username :</string>
+    <string name="passwordprofile">Password : ********</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="save_edit">Save Edit</string>
+    <string name="image_profile">Image Profile</string>
+    <string name="password_lama">Password Lama</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="play">Play</string>
+    <string name="add_to_watchlist">Add to Watchlist</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="or">Or</string>
+    <string name="client_id" translatable="false">596775787608-uk5g2in0cm63ugdcrgpm4lmhgnlmhih1.apps.googleusercontent.com</string>
+    <string name="top_rated_tv_series">Top Rated Tv Series</string>
+    <string name="hello_welcome">Hello Welcome!,</string>
+    <string name="upload_from_gallery">Upload from gallery</string>
+    <string name="upload_from_camera">Upload from Camera</string>
+    <string name="your_favorite_movies">Your Favorite Movies</string>
+    <string name="add_to_favorite">Add to Favorite</string>
+    <string name="favorite_movies">Favorite Movies</string>
+</resources>
