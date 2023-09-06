@@ -46,18 +46,17 @@ class ApiServiceTest {
         // Stub the ApiService.getPopularMovies() function
         `when`(apiService.getPopularMovies()).thenReturn(call)
 
-        // Stub the Call.enqueue() function
+
         `when`(call.enqueue(any())).thenAnswer {
             val callback = it.arguments[0] as Callback<PopularMoviesResponse>
             callback.onResponse(call, mockResponse)
         }
 
-        // Call the function under test
+
         val actualCall = apiService.getPopularMovies()
         val callback = mock(Callback::class.java) as Callback<PopularMoviesResponse>
         actualCall.enqueue(callback)
 
-        // Verify the result
         verify(call).enqueue(callback)
         verify(callback).onResponse(call, mockResponse)
 
