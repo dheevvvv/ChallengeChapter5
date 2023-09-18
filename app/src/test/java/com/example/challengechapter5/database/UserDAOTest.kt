@@ -59,41 +59,72 @@ class UserDAOTest {
         val observedUserData = userDAO.getUser().value
 
         Assert.assertEquals(userData, observedUserData)
+    }
 
-    //
-//    @get:Rule
-//    val hiltRule = HiltAndroidRule(this)
-//
-//    @get:Rule
-//    val instantExecutorRule = InstantTaskExecutorRule()
-//
-//    @Inject
-//    lateinit var movieDatabase: MovieDatabase
-//    @Inject
-//    lateinit var userDAO: UserDAO
-//
-//    @Before
-//    fun setup(){
-//        hiltRule.inject()
-//        userDAO = movieDatabase.userDao()
-//    }
-//    @After
-//    fun tearDown() {
-//        movieDatabase.close()
-//    }
-//
-//    @Test
-//    fun testInsertAndGetUser() {
-//        val userData = UserData(1, "testdepp", "depa@gmail.com", "depdep", "widfinei")
-//
-//        // Insert user data
-//        userDAO.insertUser(userData)
-//
-//        // Observe LiveData to get the user data
-//        val liveData: LiveData<UserData> = userDAO.getUser()
-//        val observer = Observer<UserData> {
-//            Assert.assertEquals(userData, it)
-//        }
-//        liveData.observeForever(observer)
+    @Test
+    fun testGetUser() {
+        // Mock data yang akan dikembalikan oleh userDao.getUser()
+        val userData = UserData(1, "testdepp", "depa@gmail.com", "depdep", "widfinei")
+        val liveData = MutableLiveData<UserData>()
+        liveData.value = userData
+
+        // Mock implementasi userDao.getUser()
+        Mockito.`when`(userDao.getUser()).thenReturn(liveData)
+
+        //fungsi yang akan diuji
+        val resultLiveData = userDao.getUser()
+
+        // Verifikasi hasil
+        Mockito.verify(userDao).getUser()
+        Assert.assertEquals(userData, resultLiveData.value)
+    }
+
+    @Test
+    fun testCheckUser() {
+        // Mock data yang akan dikembalikan oleh userDao.checkUser()
+        val email = "test@example.com"
+        val password = "password"
+        val userData = UserData(1, "testdepp", "depa@gmail.com", "depdep", "widfinei")
+        val liveData = MutableLiveData<UserData>()
+        liveData.value = userData
+
+        // Mock implementasi userDao.checkUser()
+        Mockito.`when`(userDao.checkUser(email, password)).thenReturn(liveData)
+
+        //  fungsi yang akan diuji
+        val resultLiveData = userDao.checkUser(email, password)
+
+        // Verifikasi hasil
+        Mockito.verify(userDao).checkUser(email, password)
+        Assert.assertEquals(userData, resultLiveData.value)
+    }
+
+    @Test
+    fun testUpdateUser() {
+        // Mock parameter yang akan diterima oleh userDao.updateUser()
+        val userData = UserData(1, "testdepp", "depa@gmail.com", "depdep", "widfinei")
+
+        // fungsi yang akan diuji
+        userDao.updateUser(userData)
+
+        // Verifikasi bahwa userDao.updateUser() dipanggil dengan parameter yang benar
+        Mockito.verify(userDao).updateUser(userData)
+    }
+
+    @Test
+    fun testGetUserIdByEmail() {
+        // Mock data yang akan dikembalikan oleh userDao.getUserIdByEmail()
+        val email = "test@example.com"
+        val userId = 1
+
+        // Mock implementasi userDao.getUserIdByEmail()
+        Mockito.`when`(userDao.getUserIdByEmail(email)).thenReturn(userId)
+
+        // fungsi yang akan diuji
+        val resultUserId = userDao.getUserIdByEmail(email)
+
+        // Verifikasi hasil
+        Mockito.verify(userDao).getUserIdByEmail(email)
+        Assert.assertEquals(userId, resultUserId)
     }
 }
