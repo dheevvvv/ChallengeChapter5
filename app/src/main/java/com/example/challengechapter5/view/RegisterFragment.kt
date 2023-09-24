@@ -82,6 +82,14 @@ class RegisterFragment : Fragment() {
         if (password.count { it.isDigit() } < 2){
             return false
         }
+        val digitCount = password.count { it.isDigit() }
+        val letterCount = password.count { it.isLetter() }
+        val symbolCount = password.count { !it.isLetterOrDigit() }
+
+        if (digitCount < 1 || letterCount < 1 || symbolCount < 1){
+            return false
+        }
+
         return true
     }
 }

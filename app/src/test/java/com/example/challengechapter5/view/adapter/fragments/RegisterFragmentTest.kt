@@ -22,17 +22,17 @@ class RegisterFragmentTest {
 
     @Test
     fun usernameEmpty(){
-        val user = "depa"
-        val result = regist.validateRegistrationInput(user,"1234","1234")
-        assertEquals("kosong",result,true)
+        val user = ""
+        val result = regist.validateRegistrationInput(user,"12aa&34","12aa&34")
+        assertEquals("kosong",result,false)
     }
 
     @Test
     fun validUsernameAndCorrectlyRepeatedPassword_return_true() {
         val result = regist.validateRegistrationInput(
-            "Devv",
-            "12345",
-            "12345"
+            "Devvvv",
+            "12aa&34",
+            "12aa&34"
         )
         assertEquals("oke",result,true)
     }
@@ -47,5 +47,15 @@ class RegisterFragmentTest {
         assertEquals(result, false)
     }
 
+    @Test
+    fun testPasswordContainDigitLetterAndSymbol(){
+        val password = "depp$99"
+        val result = regist.validateRegistrationInput(
+            username = "depa",
+            password,
+            password
+        )
+        assertEquals(result, true)
+    }
 
 }
