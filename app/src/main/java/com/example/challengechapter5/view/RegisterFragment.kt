@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
 
-    private lateinit var userViewModel: UserViewModel
+    lateinit var userViewModel: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,12 +41,12 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun saveUser(username : String, email : String, password : String, @Suppress("SameParameterValue") profile_photo:String){
+    fun saveUser(username : String, email : String, password : String, @Suppress("SameParameterValue") profile_photo:String){
         userViewModel.insertUser(UserData(0,username,email,password, profile_photo))
     }
 
 
-    private fun register(){
+    fun register(){
         val username = binding.etUsernameRegist.text.toString()
         val email = binding.etEmailRegist.text.toString()
         val password = binding.etPasswordRegist.text.toString()
@@ -57,10 +57,32 @@ class RegisterFragment : Fragment() {
             binding.etConfirmPasswordRegist.requestFocus()
 
         } else{
-            saveUser(username,email,password, "https://cdn-icons-png.flaticon.com/512/6522/6522516.png")
-            Toast.makeText(context, "Registrasi Berhasil", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+
+            if (validateRegistrationInput(username, password, confirmPassword) == true){
+                saveUser(username,email,password, "https://cdn-icons-png.flaticon.com/512/6522/6522516.png")
+                Toast.makeText(context, "Registrasi Berhasil", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+            } else{
+                Toast.makeText(context, "password harus sesuai", Toast.LENGTH_SHORT).show()
+            }
         }
+    }
+
+    fun validateRegistrationInput(
+        username: String,
+        password: String,
+        confirmedPassword: String
+    ): Boolean {
+        if (username.isEmpty() || password.isEmpty() || confirmedPassword.isEmpty()){
+            return false
+        }
+        if (password != confirmedPassword){
+            return false
+        }
+        if (password.count { it.isDigit() } < 2){
+            return false
+        }
+        return true
     }
 }
 

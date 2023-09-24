@@ -43,7 +43,7 @@ class UserDAOTest {
     }
 
     @Test
-    fun insertAndGetUser() {
+    fun testInsertAndGetUser() {
         val userData = UserData(1, "testdepp", "depa@gmail.com", "depdep", "widfinei")
 
         Mockito.doNothing().`when`(userDao).insertUser(userData)
