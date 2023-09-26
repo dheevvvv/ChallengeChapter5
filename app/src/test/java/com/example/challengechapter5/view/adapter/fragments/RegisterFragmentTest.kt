@@ -28,13 +28,13 @@ class RegisterFragmentTest {
     }
 
     @Test
-    fun validUsernameAndCorrectlyRepeatedPassword_return_true() {
+    fun passwordDifferentWithConfirmPassword() {
         val result = regist.validateRegistrationInput(
             "Devvvv",
-            "12aa&34",
+            "12aa&39",
             "12aa&34"
         )
-        assertEquals("oke",result,true)
+        assertEquals("oke",result,false)
     }
 
     @Test
@@ -58,4 +58,12 @@ class RegisterFragmentTest {
         assertEquals(result, true)
     }
 
+    @Test
+    fun testAllNotEmpty(){
+        val username = "depp$99"
+        val password = "depp$99"
+        val conformPassword = "depp$99"
+        val result = regist.validateRegistrationInput(username, password, conformPassword)
+        assertEquals(result, true)
+    }
 }

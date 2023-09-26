@@ -168,9 +168,8 @@ class LoginFragment : Fragment() {
         if (email.isEmpty()) return "please enter email"
         if (!email.contains("@")) return "please enter valid email"
         if (email.filter { it.isDigit() }.isEmpty()) return "email must contain at least one digit"
-
-        if(password.isEmpty()) return "please enter password"
-        if(password.length<6)return "please enter valid password"
+        if (password.isEmpty()) return "please enter password"
+        if (password.length<6) return "please enter valid password"
 
         return null
 
