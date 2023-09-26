@@ -45,11 +45,27 @@ class LoginFragmentTest {
     }
 
     @Test
-    fun emailContains(){
+    fun emailIsEmpty() {
+        val username = "wddefmoel@pwkdm"
+        val assert = login.validate(username, "", "owdjo6")
+        assert(assert == "please enter email")
+    }
+
+    @Test
+    fun emailNotContains(){
         val email = "deppgmail"
         assert(
             login.validate("depaaa", email, "skdndiwd")
                 == "please enter valid email"
+        )
+    }
+
+    @Test
+    fun emailContainsAtLeastOneDigit(){
+        val email = "d@gmail"
+        assert(
+            login.validate("depaaa", email, "skdndiwd")
+                    == "email must contain at least one digit"
         )
     }
 

@@ -89,8 +89,8 @@ class RegisterFragment : Fragment() {
         if (digitCount < 1 || letterCount < 1 || symbolCount < 1){
             return false
         }
-
-        return true
+        else
+            return true
     }
 }
 
